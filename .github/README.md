@@ -10,7 +10,7 @@ This is a dedicated mobile-optimized version of the original [NekoClock](https:/
 
 ## 🚀 How to Use
 Just open `index.html` in your mobile browser or visit the live link:
-[https://rendiqb.github.io/NekoClockMobile/]
+https://rendiqb.github.io/NekoClockMobile/
 
 ---
 *Based on the original NekoClock project.*
