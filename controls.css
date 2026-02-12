@@ -64,12 +64,14 @@
 #btn-zoom-out { background-image: url('icons/less.svg'); }
 #btn-fullscreen { background-image: url('icons/crop.svg'); }
 .icon-reset { background-image: url('icons/reset.svg'); }
+.icon-settings { background-image: url('icons/settings.svg'); }
 
 #zoom-value {
     color: white;
     font-size: 14px;
     font-weight: 600;
     min-width: 45px;
+    opacity: 0.7;
     text-align: center;
     user-select: none;
 }

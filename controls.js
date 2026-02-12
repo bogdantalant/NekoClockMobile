@@ -23,6 +23,15 @@
         if (save) localStorage.setItem(CONFIG.storageKey, currentScale);
     }
 
+    function triggerRotation(buttonElement, iconClass) {
+        const icon = buttonElement.querySelector(iconClass);
+        if (icon) {
+            icon.classList.remove('rotate-animation');
+            void icon.offsetWidth; // Триггер рефлоу для перезапуска анимации
+            icon.classList.add('rotate-animation');
+        }
+    }
+
     const runAutoZoom = (delta) => {
         currentScale += delta;
         applyScale();
@@ -47,11 +56,12 @@
             in: document.getElementById('btn-zoom-in'),
             out: document.getElementById('btn-zoom-out'),
             reset: document.getElementById('btn-reset'),
+            settings: document.getElementById('btn-settings'),
             fs: document.getElementById('btn-fullscreen'),
             container: document.querySelector('.controls-container')
         };
 
-        // Zoom logic
+        // Логика зума (нажатие и удержание)
         [{ btn: ui.in, d: CONFIG.step }, { btn: ui.out, d: -CONFIG.step }].forEach(({ btn, d }) => {
             if (!btn) return;
             btn.addEventListener('mousedown', (e) => { if(e.button === 0) startZoom(d); });
@@ -61,40 +71,50 @@
         window.addEventListener('mouseup', stopZoom);
         window.addEventListener('touchend', stopZoom);
 
-        // Reset logic
+        // Сброс масштаба
         if (ui.reset) {
             ui.reset.onclick = () => {
                 currentScale = CONFIG.defaultScale;
                 applyScale();
-                const icon = ui.reset.querySelector('.icon-reset');
-                if (icon) {
-                    icon.classList.remove('rotate-animation');
-                    void icon.offsetWidth;
-                    icon.classList.add('rotate-animation');
+                triggerRotation(ui.reset, '.icon-reset');
+            };
+        }
+
+        // ОТКРЫТИЕ НАСТРОЕК
+        if (ui.settings) {
+            ui.settings.onclick = () => {
+                triggerRotation(ui.settings, '.icon-settings');
+                // Вызываем функцию из settings.js
+                if (typeof window.toggleSettings === 'function') {
+                    window.toggleSettings();
+                } else {
+                    console.log('Меню настроек еще не загружено');
                 }
             };
         }
 
-        // Fullscreen logic
+        // Полноэкранный режим
         if (ui.fs) {
             ui.fs.onclick = () => {
-                if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
-                else document.exitFullscreen();
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(()=>{});
+                } else {
+                    document.exitFullscreen();
+                }
             };
         }
 
-        // Toggle visibility
+        // Скрытие/показ панели управления при клике по пустому месту
         document.addEventListener('click', (e) => {
             if (ui.container && !e.target.closest('.controls-bar')) {
                 ui.container.classList.toggle('hidden');
             }
         });
 
-        // Initial show
+        // Показываем панель с задержкой после загрузки
         setTimeout(() => ui.container?.classList.add('visible'), 500);
     }
 
-    // Инициализация
     window.addEventListener('DOMContentLoaded', () => {
         applyScale(false);
         setupEventListeners();
