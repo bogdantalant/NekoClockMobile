@@ -1,4 +1,6 @@
-<img src=".github/NekoClock.png" alt="NekoClock Logo" style="width: 200px; height: auto;">
+<div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+    <img src="https://github.com/bogdantalant/NekoClockMobile/blob/main/.github/NekoClock.png" alt="NekoClock Logo" style="width: 100%; max-width: 200px; height: auto; border-radius: 15px;">
+</div>
 
 # 🐾 NekoClock Mobile
 
