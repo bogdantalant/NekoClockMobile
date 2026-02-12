@@ -1,6 +1,26 @@
 let previousTime = { hours: '', minutes: '' };
 let wakeLock = null;
 let timeoutId = null;
+async function requestWakeLock() {
+    try {
+        if ('wakeLock' in navigator) {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Wake Lock active');
+            
+            wakeLock.addEventListener('release', () => {
+                console.log('Wake Lock released');
+            });
+        }
+    } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+    }
+}
+
+document.addEventListener('visibilitychange', async () => {
+    if (wakeLock !== null && document.visibilityState === 'visible') {
+        await requestWakeLock();
+    }
+});
 
 function updateClock() {
     const now = new Date();
@@ -60,6 +80,7 @@ function initClock() {
     }, 150);
 
     updateClock();
+    document.addEventListener('click', requestWakeLock, { once: true });
 }
 
 window.addEventListener('load', initClock);
