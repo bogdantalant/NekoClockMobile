@@ -58,6 +58,11 @@
     outline: none;
 }
 
+.control-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .control-btn:hover { opacity: 1; }
 .control-btn:active { transform: scale(0.9); }
 
