@@ -1,6 +1,6 @@
 # 🐾 NekoClock Mobile
 
-This is a dedicated mobile-optimized version of the original [NekoClock](https://github.com/rendiqb/NekoClock) project. Created for those who want their favorite catgirls to tell the time on smartphones and tablets.
+This is a dedicated mobile-optimized version of the original [NekoClock](https://bogdantalant.github.io/NekoClockMobile/) project. Created for those who want their favorite catgirls to tell the time on smartphones and tablets.
 
 ## ✨ Mobile Enhancements
 * **Responsive Layout:** Tailored for vertical and small screens.
