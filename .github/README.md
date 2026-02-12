@@ -1,7 +1,3 @@
-<div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-    <img src="https://github.com/bogdantalant/NekoClockMobile/blob/main/.github/NekoClock.png" alt="NekoClock Logo" style="width: 100%; max-width: 200px; height: auto; border-radius: 15px;">
-</div>
-
 # 🐾 NekoClock Mobile
 
 This is a dedicated mobile-optimized version of the original [NekoClock](https://github.com/bogdantalant/NekoClock) project. Created for those who want their favorite catgirls to tell the time on smartphones and tablets.
